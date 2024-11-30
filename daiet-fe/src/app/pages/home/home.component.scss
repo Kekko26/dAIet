@@ -4,13 +4,15 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 16%;
+    // height: 16%;
+    height: 6rem;
     p {
       margin-top: 0;
     }
   }
   .chatbot-wrapper {
-    height: 84%;
+    // height: 84%;
+    height: calc(100% - 6rem);
     display: flex;
     justify-content: center;
     form.chatbot {
@@ -25,6 +27,8 @@
       justify-content: center;
       gap: 1rem;
       .scrollable {
+        padding: 0 0.5rem;
+        height: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
         --sb-track-color: #ffffff;
@@ -43,20 +47,53 @@
         }
 
         div.input-cards {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          justify-items: center;
-          gap: 1rem;
-          margin-top: auto;
+          // gap: 1rem;
+          // margin-top: auto;
+          padding-bottom: 1rem;
           div.card {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            width: 20rem;
-            padding: 1rem;
-            border: 1px solid var(--surface-200);
+            // width: 80%;
+            // min-width: 15rem;
+            // padding: 1rem;
+            border: 2px solid var(--surface-200);
             border-radius: 5px;
+            padding: 1rem;
+            > p {
+              margin-top: 0;
+            }
+            p-autocomplete ::ng-deep {
+              width: 100%;
+              div {
+                width: 100%;
+                > ul {
+                  width: 100%;
+                  margin-bottom: 0;
+                  padding: 0.5rem 1rem;
+                }
+                ul.p-autocomplete-items {
+                  padding: 0 !important;
+                }
+              }
+            }
+            input {
+              width: 100%;
+            }
+            &.farmaci {
+              > div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
+              div.dettagli-farmaci {
+                p {
+                  margin-bottom: 0.5rem;
+                  margin-top: 1rem;
+                }
+              }
+            }
           }
         }
       }
