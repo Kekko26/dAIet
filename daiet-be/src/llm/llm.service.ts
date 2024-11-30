@@ -9,13 +9,12 @@ export class LlmService {
         private readonly config: ConfigService
     ) { }
 
-    
     private readonly _llm = new ChatGroq({
         apiKey: this.config.get('GROQ_API_KEY'),
         temperature: 0,
         model: "llama-3.1-70b-versatile",
-        streaming: false,
-    })
+        streaming: true,
+    });
 
     get llm() {
         return this._llm;
