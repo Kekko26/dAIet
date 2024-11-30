@@ -1,0 +1,73 @@
+.home {
+  height: 100%;
+  .heading {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 16%;
+    p {
+      margin-top: 0;
+    }
+  }
+  .chatbot-wrapper {
+    height: 84%;
+    display: flex;
+    justify-content: center;
+    form.chatbot {
+      border-radius: 5px;
+      width: 60%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      .scrollable {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        --sb-track-color: #ffffff;
+        --sb-thumb-color: var(--surface-200);
+        --sb-size: 7px;
+        &::-webkit-scrollbar {
+          width: var(--sb-size);
+        }
+        &::-webkit-scrollbar-track {
+          background: var(--sb-track-color);
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: var(--sb-thumb-color);
+          border-radius: 5px;
+        }
+
+        div.input-cards {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          justify-items: center;
+          gap: 1rem;
+          margin-top: auto;
+          div.card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 20rem;
+            padding: 1rem;
+            border: 1px solid var(--surface-200);
+            border-radius: 5px;
+          }
+        }
+      }
+      div.input-bar {
+        margin-top: auto;
+        margin-bottom: 1rem;
+        width: 100%;
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

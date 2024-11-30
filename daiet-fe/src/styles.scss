@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  --sb-track-color: #ffffff;
+  --sb-thumb-color: var(--surface-200);
+  --sb-size: 7px;
+  &::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 5px;
+  }
+}
+.custom-font-regular {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}

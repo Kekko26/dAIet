@@ -1,1 +1,122 @@
-<p>home works!</p>
+<div class="home">
+  <div class="heading">
+    <h1>dAIet</h1>
+    <p>L'assistente personale per l'alimentazione più adatta a te</p>
+  </div>
+  <div class="chatbot-wrapper">
+    <form class="chatbot" [formGroup]="chatbotForm">
+      <div class="scrollable">
+        <div class="input-cards">
+          <div class="card">
+            <p>Hai allergie?</p>
+            <input
+              type="text"
+              pInputText
+              formControlName="allergeni"
+              placeholder="Inseriscili qui"
+            />
+          </div>
+          <div class="card">
+            <p>Fai uso di farmaci?</p>
+            <input
+              type="text"
+              pInputText
+              formControlName="farmaci"
+              placeholder="Inseriscili qui"
+            />
+          </div>
+          <div class="card">
+            <p>Sei affetto da patologie?</p>
+            <input
+              type="text"
+              pInputText
+              formControlName="patologie"
+              placeholder="Inseriscile qui"
+            />
+          </div>
+          <div class="card">
+            <p>Vital signs</p>
+            <input
+              type="text"
+              pInputText
+              formControlName="vitalSigns"
+              placeholder="Inseriscili qui"
+            />
+          </div>
+        </div>
+        <div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error
+            dolore eius quisquam expedita asperiores aut rem neque ipsa quasi
+            aperiam voluptates non veritatis unde dignissimos voluptatem fugit
+            ea, laboriosam corrupti omnis impedit ut? Dicta dignissimos aperiam
+            laboriosam delectus at explicabo minima culpa consectetur. Laborum
+            doloribus iure illum deserunt pariatur, nesciunt officiis non
+            ratione. Tempora, asperiores. Necessitatibus veniam, ipsam a maxime
+            laboriosam quis quia, laudantium velit assumenda ipsum consectetur
+            dolor beatae vero asperiores non recusandae quibusdam odit. Qui
+            debitis blanditiis quasi reprehenderit voluptate illum quas numquam
+            nam accusamus. Ipsam temporibus doloremque molestias autem!
+            Quibusdam totam numquam illum culpa! Tempore tempora accusantium
+            sapiente et sit earum fuga placeat modi voluptatum vel expedita at
+            veniam dolorum, magni hic itaque! Molestias perferendis commodi
+            porro sequi totam iusto tenetur aut, exercitationem ducimus
+            cupiditate rem ut amet. Veniam assumenda fugit quibusdam magni optio
+            enim modi consequatur, temporibus distinctio, beatae, est ipsa. Quas
+            iste hic sint fuga laborum fugiat, aliquam eius aspernatur
+            provident? Voluptates ea, illum maxime animi laborum ex? Sit sed
+            dicta a laborum explicabo, facere odio enim minus vel ea placeat.
+            Tempore error blanditiis voluptatem quam sit fuga distinctio impedit
+            nulla repudiandae reiciendis est cum sapiente a ullam neque, quas
+            maxime eligendi, animi vel. Rerum dolor obcaecati iure, iusto fugiat
+            tempore laborum amet. Quidem, aut suscipit. Quia ipsam saepe
+            consectetur quam necessitatibus repellendus enim cupiditate
+            reprehenderit tempora! Perferendis modi fugiat obcaecati alias
+            nostrum quidem, corporis ad animi. Recusandae eveniet officia
+            pariatur maxime temporibus non, quod voluptatem odio hic distinctio
+            veritatis magnam ipsum suscipit ea animi consequuntur quaerat id ad
+            repudiandae tempore nemo earum provident. Accusantium, cumque ad
+            doloremque hic quisquam deleniti harum eligendi optio ea reiciendis
+            quis rerum error veniam! Saepe harum quisquam recusandae sit
+            mollitia, libero obcaecati temporibus consequatur doloribus maiores
+            nisi optio nobis beatae, doloremque voluptates eum accusamus
+            inventore, iste nihil. Nesciunt qui maxime inventore cumque
+            consequatur, dolorum sequi iste dolore molestiae reiciendis quidem
+            possimus totam? Nesciunt, aspernatur dicta dolore dolor quo beatae
+            sint officiis asperiores porro, quam quasi quod cupiditate quibusdam
+            reprehenderit sunt ducimus inventore maiores culpa! Ut, totam
+            maxime. Incidunt beatae dolores recusandae est hic commodi quam.
+            Quidem, maxime voluptates! Hic eaque quasi, quo ut dignissimos
+            provident soluta veniam necessitatibus architecto autem itaque
+            perspiciatis, id cupiditate eveniet eos dicta cum consequatur
+            accusantium? Soluta maxime provident, magnam laboriosam culpa fugiat
+            nam quidem, veritatis eveniet in sit esse ducimus minima nemo vel
+            sequi dolores dignissimos ratione. Molestias repellat id provident
+            sit aliquam iusto officia quasi excepturi consequuntur! Libero
+            quidem ducimus neque, alias vitae cumque ullam temporibus,
+            voluptatibus harum hic corrupti pariatur omnis? Commodi nobis
+            officia dolores quod voluptates? Nostrum, illo culpa placeat nisi
+            ipsam sed nam alias illum, quia voluptas deleniti minima eum
+            consequuntur nobis officiis esse corporis error molestiae non
+            voluptatum reprehenderit quae sunt laboriosam itaque! Debitis,
+            quisquam! Aliquid quas ducimus temporibus at provident
+            exercitationem. Autem nihil qui, magni dolorum reprehenderit laborum
+            perspiciatis itaque sunt, provident incidunt molestias, cupiditate
+            fugit commodi omnis dicta. Ipsam esse exercitationem obcaecati
+            corrupti reiciendis illum pariatur distinctio, eligendi rem
+            temporibus, maiores molestias est nemo? Ex, at a!
+          </p>
+        </div>
+      </div>
+      <div class="input-bar">
+        <input
+          type="text"
+          pInputText
+          formControlName="richiesta"
+          placeholder="Chiedimi qualcosa.."
+          (keyup.enter)="submit()"
+        />
+      </div>
+    </form>
+  </div>
+</div>
