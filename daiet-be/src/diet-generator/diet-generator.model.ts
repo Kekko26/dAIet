@@ -1,6 +1,6 @@
-export interface UserParametersDTO {
+export interface UserParameters {
     allergens: string[];
-    medications: MedicationDTO[];
+    medications: Medication[];
     diseases: string[];
     weight: number;
     height: number;
@@ -8,11 +8,24 @@ export interface UserParametersDTO {
     goal: string;
 };
 
-export interface MedicationDTO {
+export interface Medication {
     id: string;
     name: string,
-    frequency; string
+    frequency: string,
+    foodInteractions?: string,
+    sideEffects?: string
+};
+
+export interface DietRequest {
+    configuration: UserParameters;
+    furtherIndications: string;
 }
+
+
+
+
+
+
 
 
 
