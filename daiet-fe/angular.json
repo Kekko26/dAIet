@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "daiet-fe:build:production"
+              "buildTarget": "daiet-fe:build:production"
             },
             "development": {
-              "browserTarget": "daiet-fe:build:development"
+              "buildTarget": "daiet-fe:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "daiet-fe:build"
+            "buildTarget": "daiet-fe:build"
           }
         },
         "test": {
