@@ -5,7 +5,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { finalize, catchError } from 'rxjs';
-import { DietQnaServiceTsService } from 'src/app/core/services/diet-qna.service.ts.service';
+import { DietQnaService } from 'src/app/core/services/diet-qna.service';
 import { Conversation, Message } from 'src/app/shared/model/conversation.model';
 import { DietPlan } from 'src/app/shared/model/diet-generator.model';
 
@@ -27,7 +27,7 @@ const STORAGE_KEY = 'conversation';
 export class ConversationComponent implements OnInit {
   @Input() dietPlan?: DietPlan;
 
-  private readonly conversationService = inject(DietQnaServiceTsService);
+  private readonly conversationService = inject(DietQnaService);
 
   messages: Message[] = [];
   loadingResponse = false;
