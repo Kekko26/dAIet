@@ -1,4 +1,4 @@
-# Daiet Project
+# dAIet Project
 
 ## Your personal nutritionist
 
