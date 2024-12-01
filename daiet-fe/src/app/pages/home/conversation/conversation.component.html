@@ -17,12 +17,14 @@
             </div>
             }
         </ng-template>
-        <p class="m-0">{{message.content}}</p>
+        @if (message.content !== '[LOADING]' ) {
+            <p class="m-0">{{message.content}}</p>
+        }
     </p-card>
 </div>
 
 <div class="input-bar">
-    <input type="text" pInputText placeholder="Ask me something.." (keydown.enter)="onEnter(
+    <input type="text" pInputText placeholder="Ask me something.." (keyup.enter)="onEnter(
         $event
     )" />
 </div>

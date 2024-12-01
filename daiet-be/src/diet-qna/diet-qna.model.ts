@@ -8,5 +8,5 @@ export type Conversation = {
 export type QuestionDTO = {
     question: string;
     history: Conversation;
-    dietPlan: DietPlan;
+    diet_plan: DietPlan;
 }

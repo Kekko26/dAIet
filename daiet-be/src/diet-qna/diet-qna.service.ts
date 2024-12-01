@@ -15,13 +15,16 @@ export class DietQnaService {
     }
 
     // Da testare;
-    async askQuestion(diet: DietPlan, history: Conversation, question: string): Promise<string> {
+    async askQuestion(diet: DietPlan, history: Conversation, question: string): Promise<any> {
 
         const {llm} = this.LlmService;
         let computedHistory = history;
+
         if (history.length > 3) {
             computedHistory = history.slice(-3);
         }
+
+        console.log('computedHistory', computedHistory);
 
         const prompt = await PromptTemplate.fromTemplate(DIET_QNA_PROMPT).format({
             'diet_plan': JSON.stringify(diet, null, 2),
@@ -29,8 +32,10 @@ export class DietQnaService {
             'question': JSON.stringify(question, null, 2),
         })
 
+        console.log('prompt', prompt);
+
         const answer = await llm.invoke(prompt);
-        return answer.content as string;
+        return { content: answer.content};
     }
 
 }

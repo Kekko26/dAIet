@@ -16,7 +16,7 @@ export class DietQnaController {
         @Body() body: QuestionDTO 
     ){
         return await this.dietQnaService.askQuestion(
-            body.dietPlan,
+            body.diet_plan,
             body.history,
             body.question
         );
