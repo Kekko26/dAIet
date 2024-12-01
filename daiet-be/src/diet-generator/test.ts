@@ -5,7 +5,7 @@ export const TEST_USER_PARAMETERS =
         {
             "id": "med1",
             "name": "Aspirin",
-            "frequency": "daily",
+            "frequency": "1 time per week",
             "foodInteractions": "avoid alcohol",
         },
         {

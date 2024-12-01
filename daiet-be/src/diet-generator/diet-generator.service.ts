@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { LlmService } from 'src/llm/llm.service';
 import { PromptTemplate } from "@langchain/core/prompts";
-import { DIET_GENERATOR_OUTPUT_EXAMPLE, DIET_GENERATOR_PROMPT } from './prompt';
-import { DietRequest, UserParameters } from './diet-generator.model';
+import { ADAPT_TO_MEDICATIONS_OUTPUT_EXAMPLE, ADAPT_TO_MEDICATIONS_PROMPT, DIET_GENERATOR_OUTPUT_EXAMPLE, DIET_GENERATOR_PROMPT } from './prompt';
+import { DietPlan, DietRequest, Medication, UserParameters } from './diet-generator.model';
+import { StructuredOutputParser } from '@langchain/core/dist/output_parsers';
 
 @Injectable()
 export class DietGeneratorService {
@@ -28,13 +29,23 @@ export class DietGeneratorService {
             food_to_avoid: data?.foodToAvoid || [],
         });
 
+
         const response = await llm.invoke(prompt + '\n' + DIET_GENERATOR_OUTPUT_EXAMPLE);
-        return this._cleanResponse(response.content as string);
+        const plan = this._cleanResponse(response.content as string);
+        const fullPlan = await this._insertMedicine({
+            medications: data.medications,
+            dietPlan: plan,
+        });
+        return JSON.parse(fullPlan as string);
     }
 
     private _cleanResponse(response: string): any {
-        const cleanedResponse = response.replace(/\\n/g, '').replace(/\\"/g, '"').replace(/^```|```$/g, '');
-        return JSON.parse(cleanedResponse);
+        const regex = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/g;
+        const matches = response.match(regex);
+        if (!matches || matches.length === 0) {
+            throw new Error('No valid JSON found in response');
+        }
+        return JSON.parse(matches[0]);
     }
 
     public async failSafeDietGeneration(data: UserParameters): Promise<any> {
@@ -53,6 +64,32 @@ export class DietGeneratorService {
         }
     }
 
+    private async _insertMedicine(
+        data: {
+            medications: Medication[];
+            dietPlan: DietPlan;
+        }
+    ) {
+        const medStr = data.medications.map(medication => this._parseMedication(medication)).join('\n');
+        const planStr = JSON.stringify(data.dietPlan, null, 2);
 
+        const prompt = await PromptTemplate.fromTemplate(ADAPT_TO_MEDICATIONS_PROMPT).format({
+            list_of_medications: medStr,
+            meal_plan: planStr,
+        });
+
+        const response = await this.llmService.llm.invoke(prompt + '\n' + ADAPT_TO_MEDICATIONS_OUTPUT_EXAMPLE);
+        return response.content;
+    }
+
+    private _parseMedication(
+        medication: Medication
+    ) {
+        return `
+            Name: ${medication.name},
+            Frequency: ${medication.frequency},
+            Additional Info: ${medication.additionalInfo},
+        `;
+    };
 
 }

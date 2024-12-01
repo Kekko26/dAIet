@@ -9,8 +9,9 @@ export class DietGeneratorController {
         private dietGenerator: DietGeneratorService
     ) { }
 
-    @Post('test')
+    @Post('generate-diet')
     async test(@Body() body: UserParameters){
+
         const res = await this.dietGenerator.failSafeDietGeneration(
             body
         );

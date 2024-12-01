@@ -28,6 +28,8 @@ export const DIET_GENERATOR_PROMPT =
 **Critical Instruction:**
 - Provide only the JSON response with no additional text or explanation.
 - The entire output must be a valid, parseable JSON document.
+- THE RESPONSE SHOULD START WITH CURLY BRACES AND END WITH CURLY BRACES.
+.
 `;
 
 
@@ -66,5 +68,72 @@ export const DIET_GENERATOR_OUTPUT_EXAMPLE = `
 }
 `;
 
+export const ADAPT_TO_MEDICATIONS_PROMPT = `
+  Adapt the following meal plan by integrating the medication details as per the provided instructions. For each medication, specify the timing (e.g., on an empty stomach, after a meal, etc.) and ensure the instructions are followed. The medication details should be incorporated alongside the relevant meals in the meal plan.
+
+Please structure the output as a JSON with the same format as the provided meal plan, adding a "Medications" object for each day, where applicable. Ensure to provide the timing for each medication and any necessary instructions regarding meal times.
+
+## Meal plan
+{meal_plan}
+
+## List of medications
+{list_of_medications}
+
+**Critical Instruction:**
+- Provide only the JSON response with no additional text or explanation.
+- The entire output must be a valid, parseable JSON document.
+- THE RESPONSE SHOULD START WITH CURLY BRACES AND END WITH CURLY BRACES.
+
+`;
+
+export const ADAPT_TO_MEDICATIONS_OUTPUT_EXAMPLE =
+  ` 
+  Return the modified meal plan in the following format:
+
+  {
+    "mon": {
+      "meals": [
+        {
+          "meal": "breakfast",
+          "hour": "07:30 AM",
+          "main": "Scrambled eggs with spinach",
+          "side": "Whole grain toast",
+          "vegetables": "Tomato slices",
+          "dessert": "Greek yogurt with honey",
+          "nutritionalValues": {
+            "calories": 350,
+            "carbohydrates": 30,
+            "proteins": 20,
+            "fats": 15
+          },
+          "medications": [
+            {
+              "name": "Medication A",
+              "hour": "07:45 AM",
+              "additionalInfo": "Take with food"              
+            }
+          ]
+        },
+        {
+          "meal": "lunch",
+          "hour": "12:30 PM",
+          "main": "Grilled chicken salad with olive oil dressing",
+          "side": "Quinoa",
+          "vegetables": "Cucumber and bell pepper",
+          "dessert": "Mixed berries",
+          "nutritionalValues": {
+            "calories": 500,
+            "carbohydrates": 40,
+            "proteins": 35,
+            "fats": 20
+          },
+          "medications": []
+        },
+        ...
+      ]
+    },
+    ...
+  }
+`;
 
 

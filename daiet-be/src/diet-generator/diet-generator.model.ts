@@ -5,24 +5,25 @@ export interface UserParameters {
     goal: string;
     gender: string;
     allergens: string[];
+    // TODO => Da implementare;
     diseases?: string[];
     medications?: Medication[];
     foodToAvoid?: string[];
 };
 
+//TODO => Da rivedere;
 export interface Medication {
     id: string;
     name: string,
     frequency: string,
-    foodInteractions?: string,
-    sideEffects?: string
+    additionalInfo: string;
 };
 
+//TODO => Da rivedere
 export interface DietRequest {
     configuration: UserParameters;
     furtherIndications: string;
 }
-
 
 export interface PatientProfile {
     weight: number;

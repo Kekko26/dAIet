@@ -10,18 +10,14 @@ export class LlmService {
     ) { }
 
     private readonly _llm = new ChatGroq({
-        apiKey: this.config.get('GROQ_API_KEY'),
+        apiKey: this.config.get('GROQ_API_KEY2'),
         temperature: 0,
         model: "llama-3.1-70b-versatile",
-        streaming: true,
+        streaming: false,
     });
 
     get llm() {
         return this._llm;
     }
-
-
-
-
 
 }
