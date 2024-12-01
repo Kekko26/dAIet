@@ -1,7 +1,5 @@
 # Daiet Project
 
-# dAIet
-
 ## Your personal nutritionist
 
 Currently, chronic conditions are widespread, affecting around 40-45% of individuals under 65, with common issues such as hypertension, diabetes, and cardiovascular diseases. Additionally, about 45% of children and adolescents have been prescribed at least one medication. These statistics underscore the growing need for personalized healthcare, especially in managing the complex interactions between medications and nutrition.
