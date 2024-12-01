@@ -1,5 +1,5 @@
 export const DIET_GENERATOR_PROMPT =
-  `You are an expert nutritionist specializing in personalized dietary plans. Your task is to generate a complete and detailed nutritional plan in JSON format, strictly following these instructions:
+    `You are an expert nutritionist specializing in personalized dietary plans. Your task is to generate a complete and detailed nutritional plan in JSON format, strictly following these instructions:
 
 **Patient Profile:**
 - Weight: {weight} kg
@@ -42,26 +42,26 @@ export const DIET_GENERATOR_OUTPUT_EXAMPLE = `
       {
         "meal": "breakfast",
         "hour": "07:30 AM",
-        "main": "Scrambled eggs with spinach",
-        "side": "Whole grain toast",
-        "vegetables": "Tomato slices",
-        "dessert": "Greek yogurt with honey"
+        "main": "Scrambled eggs with spinach - 2 eggs + 50g spinach",
+        "side": "Whole grain toast - 2 slices (60g)",
+        "vegetables": "Tomato slices - 100g",
+        "dessert": "Greek yogurt with honey - 150g yogurt + 10g honey"
       },
       {
         "meal": "lunch",
         "hour": "12:30 PM",
-        "main": "Grilled chicken salad with olive oil dressing",
-        "side": "Quinoa",
-        "vegetables": "Cucumber and bell pepper",
-        "dessert": "Mixed berries"
+        "main": "Grilled chicken salad with olive oil dressing - 150g chicken + 10ml olive oil",
+        "side": "Quinoa - 100g cooked",
+        "vegetables": "Cucumber and bell pepper - 100g cucumber + 100g bell pepper",
+        "dessert": "Mixed berries - 150g"
       },
       {
         "meal": "dinner",
         "hour": "07:00 PM",
-        "main": "Baked salmon with steamed broccoli",
-        "side": "Brown rice",
-        "vegetables": "Steamed carrots",
-        "dessert": "Fruit salad"
+        "main": "Baked salmon with steamed broccoli - 150g salmon + 100g broccoli",
+        "side": "Brown rice - 100g cooked",
+        "vegetables": "Steamed carrots - 150g",
+        "dessert": "Fruit salad - 200g"
       }
     ]
   }
@@ -87,52 +87,50 @@ Please structure the output as a JSON with the same format as the provided meal 
 `;
 
 export const ADAPT_TO_MEDICATIONS_OUTPUT_EXAMPLE =
-  ` 
+    ` 
   Return the modified meal plan in the following format:
 
   {
     "mon": {
-      "meals": [
-        {
-          "meal": "breakfast",
-          "hour": "07:30 AM",
-          "main": "Scrambled eggs with spinach",
-          "side": "Whole grain toast",
-          "vegetables": "Tomato slices",
-          "dessert": "Greek yogurt with honey",
-          "nutritionalValues": {
-            "calories": 350,
-            "carbohydrates": 30,
-            "proteins": 20,
-            "fats": 15
-          },
-          "medications": [
+        "meals": [
             {
-              "name": "Medication A",
-              "hour": "07:45 AM",
-              "additionalInfo": "Take with food"              
+                "meal": "breakfast",
+                "hour": "07:30 AM",
+                "main": "Scrambled eggs with spinach - 2 eggs + 50g spinach",
+                "side": "Whole grain toast - 2 slices (60g)",
+                "vegetables": "Tomato slices - 100g",
+                "dessert": "Greek yogurt with honey - 150g yogurt + 10g honey",
+                "nutritionalValues": {
+                    "calories": 350,
+                    "carbohydrates": 30,
+                    "proteins": 20,
+                    "fats": 15
+                },
+                "medications": [
+                    {
+                        "name": "Medication A",
+                        "hour": "07:45 AM",
+                        "additionalInfo": "Take with food"              
+                    }
+                ]
+            },
+            {
+                "meal": "lunch",
+                "hour": "12:30 PM",
+                "main": "Grilled chicken salad with olive oil dressing - 150g chicken + 10ml olive oil",
+                "side": "Quinoa - 100g cooked",
+                "vegetables": "Cucumber and bell pepper - 100g cucumber + 100g bell pepper",
+                "dessert": "Mixed berries - 150g",
+                "nutritionalValues": {
+                    "calories": 500,
+                    "carbohydrates": 40,
+                    "proteins": 35,
+                    "fats": 20
+                },
+                "medications": []
             }
-          ]
-        },
-        {
-          "meal": "lunch",
-          "hour": "12:30 PM",
-          "main": "Grilled chicken salad with olive oil dressing",
-          "side": "Quinoa",
-          "vegetables": "Cucumber and bell pepper",
-          "dessert": "Mixed berries",
-          "nutritionalValues": {
-            "calories": 500,
-            "carbohydrates": 40,
-            "proteins": 35,
-            "fats": 20
-          },
-          "medications": []
-        },
-        ...
-      ]
-    },
-    ...
+        ]
+    }
   }
 `;
 
