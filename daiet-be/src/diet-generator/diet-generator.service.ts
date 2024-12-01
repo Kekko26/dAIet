@@ -10,9 +10,24 @@ import { StructuredOutputParser } from '@langchain/core/dist/output_parsers';
 export class DietGeneratorService {
 
     constructor(
-        private readonly config: ConfigService,
         private readonly llmService: LlmService
     ) { }
+
+    public async failSafeDietGeneration(data: UserParameters): Promise<any> {
+        for (let attempt = 0; attempt < 3; attempt++) {
+            try {
+                return await this._generateDiet(data);
+            } catch (error) {
+                console.error(`Error while generating diet, attempt ${attempt + 1}`, error);
+                if (attempt === 2) {
+                    return {
+                        error: 'Error while generating diet',
+                        message: error.message,
+                    };
+                }
+            }
+        }
+    }
 
     async _generateDiet(
         data: UserParameters
@@ -26,9 +41,8 @@ export class DietGeneratorService {
             weight: data.weight,
             height: data.height,
             goal: data.goal,
-            food_to_avoid: data?.foodToAvoid || [],
+            food_to_avoid: data?.diseases?.map(d => d.restricted_foods).join(', '),
         });
-
 
         const response = await llm.invoke(prompt + '\n' + DIET_GENERATOR_OUTPUT_EXAMPLE);
         const plan = this._cleanResponse(response.content as string);
@@ -46,22 +60,6 @@ export class DietGeneratorService {
             throw new Error('No valid JSON found in response');
         }
         return JSON.parse(matches[0]);
-    }
-
-    public async failSafeDietGeneration(data: UserParameters): Promise<any> {
-        for (let attempt = 0; attempt < 3; attempt++) {
-            try {
-                return await this._generateDiet(data);
-            } catch (error) {
-                console.error(`Error while generating diet, attempt ${attempt + 1}`, error);
-                if (attempt === 2) {
-                    return {
-                        error: 'Error while generating diet',
-                        message: error.message,
-                    };
-                }
-            }
-        }
     }
 
     private async _insertMedicine(

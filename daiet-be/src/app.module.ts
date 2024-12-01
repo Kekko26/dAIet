@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { LlmModule } from './llm/llm.module';
 import { ConfigModule } from '@nestjs/config';
 import { DietGeneratorModule } from './diet-generator/diet-generator.module';
+import { TypologicalModule } from './typological/typological.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { DietGeneratorModule } from './diet-generator/diet-generator.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    DietGeneratorModule
+    DietGeneratorModule,
+    TypologicalModule
   ],
   controllers: [AppController],
   providers: [AppService],

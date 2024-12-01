@@ -1,3 +1,6 @@
+import { DiseaseEntity } from "src/mock-database/diseases";
+import { MedicationEntity } from "src/mock-database/medications";
+
 export interface UserParameters {
     weight: number;
     height: number;
@@ -6,9 +9,8 @@ export interface UserParameters {
     gender: string;
     allergens: string[];
     // TODO => Da implementare;
-    diseases?: string[];
-    medications?: Medication[];
-    foodToAvoid?: string[];
+    diseases?: DiseaseEntity[];
+    medications?: MedicationEntity[];
 };
 
 //TODO => Da rivedere;
