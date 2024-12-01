@@ -1,14 +1,29 @@
 .home {
   height: 100%;
   .heading {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    // height: 16%;
-    height: 6rem;
+    padding: 0 1rem;
+    position: relative;
+    div.image {
+      position: absolute;
+      width: fit-content;
+      height: 100%;
+      top: 0;
+      right: 0;
+      padding-right: 2rem;
+      img {
+        height: 100%;
+      }
+    }
+    div.text {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      // height: 16%;
+      height: 6rem;
 
-    p {
-      margin-top: 0;
+      p {
+        margin-top: 0;
+      }
     }
   }
   .chatbot-wrapper {

@@ -1,7 +1,12 @@
 <div class="home">
   <div class="heading">
-    <h1>dAIet</h1>
-    <p>Your personal assistant for the nutrition plan that suits you best</p>
+    <div class="text">
+      <h1>dAIet</h1>
+      <p>Your personal assistant for the nutrition plan that suits you best</p>
+    </div>
+    <div class="image">
+      <img src="../../../assets/bot-avatar.png" alt="lama-avatar" />
+    </div>
   </div>
   <div classList="{{ dietPlan ? 'table-visible ' : '' }} chatbot-wrapper">
     <form class="chatbot animated" [formGroup]="chatbotForm">
