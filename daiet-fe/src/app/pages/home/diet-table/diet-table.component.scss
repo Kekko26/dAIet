@@ -1,0 +1,129 @@
+:host {
+  height: 100%;
+  display: block;
+  > div {
+    height: 100%;
+    > div {
+      max-height: 40%;
+    }
+    p-tabview ::ng-deep {
+      max-height: calc(60% - 1rem);
+      display: block;
+      flex-grow: 1;
+      border-radius: 5px;
+      > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        div.p-tabview-panels {
+          flex-grow: 1;
+          overflow-y: scroll;
+
+          &::-webkit-scrollbar {
+            width: var(--sb-size);
+          }
+          &::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.diet-table-container {
+  display: flex;
+  flex-direction: column;
+}
+.patient-profile-summary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.patient-profile-summary h2 {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+}
+
+.profile-details,
+.caloric-details,
+.macronutrient-balance {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 15px;
+}
+
+.profile-item,
+.caloric-item {
+  flex: 1;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.macronutrient-balance {
+  //   flex-direction: column;
+}
+
+.balance-details {
+  display: flex;
+  gap: 1rem;
+}
+
+.day-summary {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+.daily-nutrition {
+  display: flex;
+  gap: 1rem;
+}
+
+.nutrition-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nutrition-item .label {
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.nutrition-item .value {
+  font-size: 1.1em;
+  color: #333;
+}
+
+p-tabview ::ng-deep {
+  ul.p-tabview-nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    > * {
+      flex-grow: 1;
+    }
+    > li {
+      a {
+        text-decoration: none;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,38 +1,81 @@
 <div class="home">
   <div class="heading">
     <h1>dAIet</h1>
-    <p>L'assistente personale per l'alimentazione più adatta a te</p>
+    <p>Your personal assistant for the nutrition plan that suits you best</p>
   </div>
-  <div class="chatbot-wrapper">
-    <form class="chatbot" [formGroup]="chatbotForm">
+  <div classList="{{ isTable ? 'table-visible ' : '' }} chatbot-wrapper">
+    <form class="chatbot animated" [formGroup]="chatbotForm">
       <div class="scrollable" #scrollContainer>
-        <div class="input-cards row g-3">
+        <div class="input-cards row g-2">
           <div class="card col-6">
-            <p>Hai allergie?</p>
+            <p>Do you have any allergies?</p>
             <input
               type="text"
               pInputText
               formControlName="allergeni"
-              placeholder="Inseriscile qui"
+              placeholder="Enter them here"
             />
           </div>
 
-          <div class="card col-6">
+          <div class="card col-6 vitalSigns" formGroupName="vitalSigns">
             <p>Vital signs</p>
-            <input
-              type="text"
-              pInputText
-              formControlName="vitalSigns"
-              placeholder="Inseriscili qui"
-            />
+            <div class="numeric-inputs">
+              <p-inputNumber
+                id="altezza"
+                formControlName="altezza"
+                mode="decimal"
+                minFractionDigits="0"
+                maxFractionDigits="0"
+                min="0"
+                showButtons="true"
+                step="1"
+                suffix="cm"
+              ></p-inputNumber>
+              <p-inputNumber
+                id="peso"
+                formControlName="peso"
+                mode="decimal"
+                minFractionDigits="0"
+                maxFractionDigits="0"
+                min="0"
+                showButtons="true"
+                step="1"
+                suffix="kg"
+              ></p-inputNumber>
+              <p-inputNumber
+                id="eta"
+                formControlName="eta"
+                mode="decimal"
+                minFractionDigits="0"
+                maxFractionDigits="0"
+                min="0"
+                showButtons="true"
+                step="1"
+                placeholder="Age"
+              ></p-inputNumber>
+            </div>
+            <div class="text-inputs">
+              <p-dropdown
+                formControlName="goal"
+                [options]="goals"
+                optionLabel="label"
+                placeholder="Goal"
+              />
+              <p-selectButton
+                [options]="sesso"
+                formControlName="sesso"
+                optionLabel="label"
+                optionValue="value"
+              />
+            </div>
           </div>
           <div class="card col-12">
-            <p>Sei affetto da patologie?</p>
+            <p>Do you have any medical conditions?</p>
             <!-- <input
               type="text"
               pInputText
               formControlName="patologie"
-              placeholder="Inseriscile qui"
+              placeholder="Enter them here"
             /> -->
             <p-autoComplete
               formControlName="patologie"
@@ -40,11 +83,11 @@
               (completeMethod)="filterPatologie($event)"
               optionLabel="name"
               [multiple]="true"
-              placeholder="Inseriscile qui"
+              placeholder="Enter them here"
             />
           </div>
           <div class="card farmaci col-12">
-            <p>Fai uso di farmaci?</p>
+            <p>Are you taking any medications?</p>
             <p-autoComplete
               formControlName="farmaci"
               [suggestions]="filteredFarmaci"
@@ -52,7 +95,7 @@
               optionLabel="name"
               [multiple]="true"
               (onUnselect)="removeFarmaco($event)"
-              placeholder="Inseriscili qui"
+              placeholder="Enter them here"
             />
             @for (farmacoDetail of chatbotForm.get('farmaci')?.value; track
             farmacoDetail.id;){
@@ -60,7 +103,7 @@
               <p>{{ farmacoDetail.name }}</p>
               <textarea
                 id="{{ farmacoDetail.id }}"
-                placeholder="In che modalità assumi {{ farmacoDetail.name }}?"
+                placeholder="How do you take {{ farmacoDetail.name }}?"
                 pInputTextarea
                 cols="20"
                 rows="2"
@@ -70,9 +113,9 @@
             }
           </div>
         </div>
-        <div>
+        <div class="generated">
           <p>
-            {{ testoSimulato }}
+            {{ testoSimulato.value }}
           </p>
         </div>
       </div>
@@ -81,10 +124,14 @@
           type="text"
           pInputText
           formControlName="richiesta"
-          placeholder="Chiedimi qualcosa.."
+          placeholder="Ask me something.."
           (keyup.enter)="submit()"
         />
       </div>
     </form>
+    @if(isTable){ }
+    <div class="diet-table animated">
+      <app-diet-table [nutritionData]="retreivedJson"></app-diet-table>
+    </div>
   </div>
 </div>

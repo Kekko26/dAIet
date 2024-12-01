@@ -6,20 +6,23 @@
     flex-direction: column;
     // height: 16%;
     height: 6rem;
+
     p {
       margin-top: 0;
     }
   }
   .chatbot-wrapper {
-    // height: 84%;
+    overflow-x: hidden;
     height: calc(100% - 6rem);
     display: flex;
+    gap: 0.5rem;
     justify-content: center;
     form.chatbot {
-      border-radius: 5px;
-      width: 60%;
-      padding: 1rem;
       margin-bottom: 1rem;
+      width: 60%;
+      border-radius: 5px;
+      padding: 1rem;
+      // margin-bottom: 1rem;
       background-color: white;
       display: flex;
       flex-direction: column;
@@ -31,9 +34,7 @@
         height: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
-        --sb-track-color: #ffffff;
-        --sb-thumb-color: var(--surface-200);
-        --sb-size: 7px;
+
         &::-webkit-scrollbar {
           width: var(--sb-size);
         }
@@ -49,15 +50,69 @@
         div.input-cards {
           // gap: 1rem;
           // margin-top: auto;
-          padding-bottom: 1rem;
+          // padding-bottom: 1rem;
+          justify-content: space-between;
           div.card {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            // width: 80%;
-            // min-width: 15rem;
-            // padding: 1rem;
+            p {
+              color: var(--primary-color);
+            }
+            &.col-6 {
+              width: 49%;
+            }
+            &.vitalSigns {
+              div.numeric-inputs {
+                display: flex;
+                gap: 1rem;
+                p-inputnumber ::ng-deep {
+                  width: 100%;
+                  > span {
+                    width: 100%;
+                    input {
+                      padding: 0.5rem;
+                      width: 100%;
+                    }
+                    button {
+                      background-color: transparent;
+                      border: 1px solid var(--surface-300);
+                      border-left: none;
+                      width: fit-content;
+                      padding: 0 0.5rem;
+                      &:hover {
+                        background-color: var(--surface-200);
+                      }
+                      &:first-of-type {
+                        border-bottom: none;
+                        border-top-right-radius: 5px;
+                      }
+                      &:last-of-type {
+                        border-bottom-right-radius: 5px;
+                        border-top: none;
+                      }
+                      angledownicon,
+                      angleupicon {
+                        color: var(--surface-400);
+                      }
+                    }
+                  }
+                }
+              }
+              div.text-inputs {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 1rem;
+                p-dropdown ::ng-deep {
+                  ul {
+                    margin: 0;
+                    padding: 0;
+                  }
+                }
+              }
+            }
             border: 2px solid var(--surface-200);
             border-radius: 5px;
             padding: 1rem;
@@ -72,14 +127,19 @@
                   width: 100%;
                   margin-bottom: 0;
                   padding: 0.5rem 1rem;
+                  li.p-autocomplete-input-token {
+                    padding: 0;
+                  }
                 }
                 ul.p-autocomplete-items {
                   padding: 0 !important;
                 }
               }
             }
+
             input {
               width: 100%;
+              padding: 0.5rem;
             }
             &.farmaci {
               > div {
@@ -96,15 +156,45 @@
             }
           }
         }
+        div.generated {
+          margin-top: 1rem;
+        }
       }
       div.input-bar {
         margin-top: auto;
-        margin-bottom: 1rem;
+        // margin-bottom: 1rem;
         width: 100%;
         input {
           width: 100%;
         }
       }
+    }
+    div.diet-table {
+      width: 0%;
+      visibility: hidden;
+    }
+
+    &.table-visible {
+      form.chatbot {
+        width: 50%;
+        margin-left: 1rem;
+        div.text-inputs {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+        }
+      }
+      div.diet-table {
+        margin-bottom: 1rem;
+        width: 50%;
+        margin-right: 1rem;
+        visibility: visible;
+      }
+    }
+
+    .animated {
+      transition: all 1s ease; /* Smooth transition for all properties */
     }
   }
 }

@@ -1,0 +1,61 @@
+<div class="diet-table-container">
+  <!-- Patient Profile Summary -->
+  @if(patientProfile){
+  <div class="patient-profile-summary">
+    <h2>Personalized Nutrition Plan</h2>
+    <div class="profile-details">
+      <div class="profile-item">
+        <strong>Age:</strong> {{ patientProfile.age }} years
+      </div>
+      <div class="profile-item">
+        <strong>Height:</strong> {{ patientProfile.height }} cm
+      </div>
+      <div class="profile-item">
+        <strong>Weight:</strong> {{ patientProfile.weight }} kg
+      </div>
+      <div class="profile-item">
+        <strong>Goal:</strong> {{ patientProfile.goal }}
+      </div>
+    </div>
+
+    <div class="caloric-details">
+      <div class="caloric-item">
+        <strong>Daily Caloric Needs:</strong> {{ dailyCaloricNeeds }} calories
+      </div>
+      <div class="caloric-item">
+        <strong>Caloric Intake Plan:</strong> {{ caloricIntakePlan }} calories
+      </div>
+    </div>
+
+    <div class="macronutrient-balance">
+      <strong>Macronutrient Balance:</strong>
+      <div class="balance-details">
+        <div>Carbohydrates: {{ macronutrientBalance.carbohydrates }}%</div>
+        <div>Proteins: {{ macronutrientBalance.proteins }}%</div>
+        <div>Fats: {{ macronutrientBalance.fats }}%</div>
+      </div>
+    </div>
+  </div>
+  }
+
+  <p-tabView>
+    @for (day of days; track day.key) {
+    <p-tabPanel header="{{ day.name }}">
+      @for (meal of nutritionData.mealPlan[day.key].meals; track $index) {
+      <p
+        pTooltip="Calories: {{ meal.nutritionalValues.calories }}
+         Carbs: {{ meal.nutritionalValues.carbohydrates }}
+        Proteines: {{ meal.nutritionalValues.proteins }}
+        Fats: {{ meal.nutritionalValues.fats }}"
+      >
+        <strong class="custom-font-bold">{{ meal.meal }}</strong> at
+        {{ meal.hour }}: <br />🍽️ {{ meal.main }} <br />{{
+          meal.side ? "🥗 " + meal.side : ""
+        }}
+        <br />{{ meal.vegetables ? " 🥦 " + meal.vegetables : "" }}
+      </p>
+      }
+    </p-tabPanel>
+    }
+  </p-tabView>
+</div>
