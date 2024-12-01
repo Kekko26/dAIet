@@ -7,7 +7,7 @@ import { DietPlan } from 'src/app/shared/model/diet-generator.model';
 @Injectable({
   providedIn: 'root'
 })
-export class DietQnaServiceTsService {
+export class DietQnaService{
 
   constructor() { }
 
