@@ -1,11 +1,15 @@
-<div class="home">
+<div class="home {{ dietPlan ? 'table-visible' : '' }}">
   <div class="heading">
-    <div class="text">
+    <div class="text animated">
       <h1>d<span>AI</span>et</h1>
       <p>Your personal assistant for the nutrition plan that suits you best</p>
-    </div>
-    <div class="image">
-      <img src="../../../assets/bot-avatar.png" alt="lama-avatar" />
+      <div class="image">
+        <img
+          src="../../../assets/bot-avatar.png"
+          alt="lama-avatar"
+          class="{{ isLoading ? 'rotate-image' : '' }}"
+        />
+      </div>
     </div>
   </div>
   <div classList="{{ dietPlan ? 'table-visible ' : '' }} chatbot-wrapper">
@@ -16,6 +20,12 @@
             label="{{ dietPlan ? 'Re-generate' : 'Generate' }} diet plan"
             [loading]="isLoading"
             (onClick)="submit()"
+          />
+          <p-button
+            label="Clear"
+            [style.display]="dietPlan ? 'block' : 'none'"
+            [loading]="isLoading"
+            (onClick)="clear()"
           />
         </div>
         <div class="input-cards row g-2">

@@ -1,24 +1,18 @@
 .home {
   height: 100%;
   .heading {
-    padding: 0 1rem;
-    position: relative;
-    div.image {
-      position: absolute;
-      width: fit-content;
-      height: 100%;
-      top: 0;
-      right: 0;
-      padding-right: 2rem;
-      img {
-        height: 100%;
-      }
-    }
+    // padding: 0 2rem;
+    display: flex;
+    justify-content: center;
     div.text {
+      position: relative;
       display: flex;
       align-items: center;
       flex-direction: column;
       height: 6rem;
+      width: 60%;
+      transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+
       h1 {
         span {
           color: var(--primary-color);
@@ -26,6 +20,28 @@
       }
       p {
         margin-top: 0;
+      }
+      div.image {
+        position: absolute;
+        width: fit-content;
+        height: 100%;
+        top: 0;
+        right: 0;
+        // padding-right: 2rem;
+        display: flex;
+        align-items: center;
+        img {
+          height: 80%;
+          width: fit-content;
+        }
+      }
+    }
+  }
+  &.table-visible {
+    .heading {
+      padding: 0 1rem;
+      div.text {
+        width: 100%;
       }
     }
   }
@@ -69,6 +85,12 @@
           margin-bottom: 1rem;
           display: flex;
           justify-content: center;
+          gap: 1rem;
+          p-button ::ng-deep {
+            button {
+              border-radius: 5px;
+            }
+          }
         }
         div.input-cards {
           // gap: 1rem;
@@ -226,4 +248,22 @@
       transition: all 1s ease; /* Smooth transition for all properties */
     }
   }
+}
+
+/* styles.css or your component's CSS file */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-image {
+  width: 100px;
+  height: 100px;
+  animation: rotate 1s linear infinite;
+  display: inline-block;
 }

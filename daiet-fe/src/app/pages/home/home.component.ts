@@ -154,6 +154,11 @@ export class HomeComponent {
     }
   }
 
+  clear() {
+    sessionStorage.removeItem('diet.plan');
+    this.dietPlan = null;
+  }
+
   isLoading: boolean = false;
   submit() {
     this.isLoading = true;

@@ -51,9 +51,13 @@
       >
         <strong class="custom-font-bold">{{ meal.meal }}</strong> at
         {{ meal.hour }}: <br />🍽️ {{ meal.main }} <br />{{
-          meal.side ? "🥗 " + meal.side : ""
+          meal.side && meal.side != "NONE" ? "🥗 " + meal.side : ""
         }}
-        <br />{{ meal.vegetables ? " 🥦 " + meal.vegetables : "" }}
+        <br />{{
+          meal.vegetables && meal.vegetables != "NONE"
+            ? " 🥦 " + meal.vegetables
+            : ""
+        }}
         @for (med of meal.medications; track med.name) {
         <br />🩺 {{ med.name }} at {{ med.hour }}
         {{ med.additionalInfo ? ": " + med.additionalInfo : "" }}
