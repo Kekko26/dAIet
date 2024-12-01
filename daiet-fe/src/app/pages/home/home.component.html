@@ -115,22 +115,11 @@
             }
           </div>
         </div>
-        <div class="generated">
-          <!-- <p>
-            {{ testoSimulato.value }}
-          </p> -->
+
+        @if (dietPlan) {
+        <div>
+          <app-conversation></app-conversation>
         </div>
-      </div>
-      <div classList="input-bar {{ dietPlan ? 'd-block' : 'd-none' }} ">
-        <input
-          type="text"
-          pInputText
-          formControlName="richiesta"
-          placeholder="Ask me something.."
-          (keyup.enter)="submit()"
-        />
-        @if(isLoading){
-        <i class="pi pi-spinner pi-spin"></i>
         }
       </div>
     </form>

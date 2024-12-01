@@ -31,6 +31,7 @@ import {
   UserParameters,
 } from 'src/app/shared/model/diet-generator.model';
 import { ButtonModule } from 'primeng/button';
+import { ConversationComponent } from './conversation/conversation.component';
 
 @Component({
   selector: 'app-home',
@@ -46,6 +47,7 @@ import { ButtonModule } from 'primeng/button';
     DietTableComponent,
     DropdownModule,
     ButtonModule,
+    ConversationComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
