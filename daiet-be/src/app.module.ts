@@ -5,6 +5,7 @@ import { LlmModule } from './llm/llm.module';
 import { ConfigModule } from '@nestjs/config';
 import { DietGeneratorModule } from './diet-generator/diet-generator.module';
 import { TypologicalModule } from './typological/typological.module';
+import { DietQnaModule } from './diet-qna/diet-qna.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { TypologicalModule } from './typological/typological.module';
       isGlobal: true,
     }),
     DietGeneratorModule,
-    TypologicalModule
+    TypologicalModule,
+    DietQnaModule
   ],
   controllers: [AppController],
   providers: [AppService],

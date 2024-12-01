@@ -1,12 +1,16 @@
-export interface MedicationEntity{
+interface MedicationEntity{
     id: number;
     name: string;
     generic_name: string;
-    dosage: string;
     timing: string;
     interactions: string;
     disease_id: number;
-}
+    dosage: string;
+};
+
+export interface MedicationDTO extends MedicationEntity {
+  frequency?: string;
+};
 
 // TODO => Rimuovere il dosaggio, momentaneamente sovrascritto a FE;
 export const MEDICATIONS_DATA = [

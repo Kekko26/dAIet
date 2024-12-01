@@ -1,10 +1,12 @@
 
-export interface DiseaseEntity {
+interface DiseaseEntity {
     id: number;
     disease: string;
     recommended_foods: string;
     restricted_foods: string;
 };
+
+export type DiseaseDTO = DiseaseEntity;
 
 export const DISEASES_DATA =
     [

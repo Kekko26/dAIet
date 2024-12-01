@@ -1,5 +1,6 @@
-import { DiseaseEntity } from "src/mock-database/diseases";
-import { MedicationEntity } from "src/mock-database/medications";
+import { DiseaseDTO } from "src/mock-database/diseases";
+import { MedicationDTO } from "src/mock-database/medications";
+
 
 export interface UserParameters {
     weight: number;
@@ -8,23 +9,14 @@ export interface UserParameters {
     goal: string;
     gender: string;
     allergens: string[];
-    // TODO => Da implementare;
-    diseases?: DiseaseEntity[];
-    medications?: MedicationEntity[];
+    diseases?: DiseaseDTO[];
+    medications?: MedicationDTO[];
 };
 
-//TODO => Da rivedere;
-export interface Medication {
-    id: string;
-    name: string,
-    frequency: string,
-    additionalInfo: string;
-};
-
-//TODO => Da rivedere
 export interface DietRequest {
     configuration: UserParameters;
-    furtherIndications: string;
+    // TODO => Da implementare;
+    furtherIndications?: string;
 }
 
 export interface PatientProfile {
