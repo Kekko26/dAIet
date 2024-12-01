@@ -17,11 +17,10 @@ By addressing individual needs, dAIet empowers users to maintain a balanced, hea
 
 
 
-###
 # Installation
-## Prerequisites
-- Node.js
-- npm (Node Package Manager)
+  ## Prerequisites
+  - Node.js
+  - npm (Node Package Manager)
 
 ## Project Structure
 - **`daiet-fe`**: Angular frontend code
@@ -29,19 +28,18 @@ By addressing individual needs, dAIet empowers users to maintain a balanced, hea
 
 ## Setup Instructions
 
-## 1. Clone the Repository
-git clone https://github.com/Kekko26/dAIet.git
-
-cd daiet
-
+## Clone the Repository
+    git clone https://github.com/Kekko26/dAIet.git    
+## Move to dAIet folder
+    cd daiet
 ## Install frontend packages in daiet/daiet-fe
-npm i
+    npm i
 ## Run frontend
-npm run start
+    npm run start
 
 ## Install backend packages in daiet/daiet-be
-npm i
+    npm i
 ## Add .env file with GROQ_API_KEY
 create a .env file under daiet/daiet-be/ containing GROQ_API_KEY variable
 ## Run backend
-npm run start
+    npm run start
