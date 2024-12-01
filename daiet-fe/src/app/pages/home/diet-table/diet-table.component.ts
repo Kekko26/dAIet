@@ -41,8 +41,6 @@ export class DietTableComponent {
 
   ngOnChanges() {
     if (this.nutritionData) {
-      console.log('arrivato', this.nutritionData);
-
       this.patientProfile = this.nutritionData.patientProfile;
       this.mealPlan = this.nutritionData.mealPlan;
       this.dailyCaloricNeeds = this.nutritionData.dailyCaloricNeeds;

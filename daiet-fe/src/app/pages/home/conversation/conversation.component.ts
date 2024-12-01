@@ -19,16 +19,16 @@ const STORAGE_KEY = 'conversation';
     CardModule,
     CommonModule,
     InputTextModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
   templateUrl: './conversation.component.html',
-  styleUrls: ['./conversation.component.scss']
+  styleUrls: ['./conversation.component.scss'],
 })
 export class ConversationComponent implements OnInit {
   @Input() dietPlan?: DietPlan;
 
   private readonly conversationService = inject(DietQnaServiceTsService);
-  
+
   messages: Message[] = [];
   loadingResponse = false;
 
@@ -48,22 +48,29 @@ export class ConversationComponent implements OnInit {
   }
 
   private transformToConversation(messages: Message[]): Conversation {
-    return messages.reduce<Conversation>((conversation, message, index, array) => {
-      if (message.isUser && index + 1 < array.length && !array[index + 1].isUser) {
-        conversation.push({
-          question: message.content,
-          answer: array[index + 1].content
-        });
-      }
-      return conversation;
-    }, []);
+    return messages.reduce<Conversation>(
+      (conversation, message, index, array) => {
+        if (
+          message.isUser &&
+          index + 1 < array.length &&
+          !array[index + 1].isUser
+        ) {
+          conversation.push({
+            question: message.content,
+            answer: array[index + 1].content,
+          });
+        }
+        return conversation;
+      },
+      []
+    );
   }
 
   private createMessage(content: string, isUser: boolean): Message {
     return {
       content,
       isUser,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
   }
 
@@ -87,19 +94,24 @@ export class ConversationComponent implements OnInit {
     this.saveConversation();
   }
 
-  private requestAnswer(question: string, history: Conversation, dietPlan: DietPlan): void {
+  private requestAnswer(
+    question: string,
+    history: Conversation,
+    dietPlan: DietPlan
+  ): void {
     this.loadingResponse = true;
     this.addMessage('[LOADING]', false);
 
-    this.conversationService.askQuestion(dietPlan, history, question)
+    this.conversationService
+      .askQuestion(dietPlan, history, question)
       .pipe(
-        finalize(() => this.loadingResponse = false),
-        catchError(error => {
+        finalize(() => (this.loadingResponse = false)),
+        catchError((error) => {
           this.handleError(error);
           throw error;
         })
       )
-      .subscribe(response => {
+      .subscribe((response) => {
         this.updateLastMessage(response.content);
       });
   }
@@ -113,6 +125,8 @@ export class ConversationComponent implements OnInit {
 
   private handleError(error: any): void {
     console.error('Error in conversation:', error);
-    this.updateLastMessage('Sorry, there was an error processing your request.');
+    this.updateLastMessage(
+      'Sorry, there was an error processing your request.'
+    );
   }
 }

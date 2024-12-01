@@ -1,28 +1,39 @@
 <div class="message-container">
-    <p-card *ngFor="let message of messages" [style]="{'margin-bottom': '1rem'}">
-        <ng-template pTemplate="header">
-            @if (message.content !== '[LOADING]') {
-            <div class="message-item">
-                <p-avatar [image]="message.isUser ? 'assets/user-avatar.png' : 'assets/bot-avatar.png'" shape="circle"
-                    size="normal">
-                </p-avatar>
-                <span>
-                    {{message.isUser ? 'User' : 'LLama'}}
-                </span>
-                <span>{{message.timestamp | date:'short'}}</span>
-            </div>
-            } @else {
-            <div class="message-item">
-                <p-progressSpinner></p-progressSpinner>
-            </div>
-            }
-        </ng-template>
-        <p class="m-0">{{message.content}}</p>
-    </p-card>
+  <p-card
+    *ngFor="let message of messages"
+    [style]="{ 'margin-bottom': '1rem' }"
+  >
+    <ng-template pTemplate="header">
+      @if (message.content !== '[LOADING]') {
+      <div class="message-item">
+        <p-avatar
+          [image]="
+            message.isUser ? 'assets/user-avatar.png' : 'assets/bot-avatar.png'
+          "
+          shape="circle"
+          size="normal"
+        >
+        </p-avatar>
+        <span>
+          {{ message.isUser ? "User" : "LLama" }}
+        </span>
+        <span>{{ message.timestamp | date : "short" }}</span>
+      </div>
+      } @else {
+      <div class="message-item">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+      }
+    </ng-template>
+    <p class="m-0">{{ message.content }}</p>
+  </p-card>
 </div>
 
 <div class="input-bar">
-    <input type="text" pInputText placeholder="Ask me something.." (keydown.enter)="onEnter(
-        $event
-    )" />
+  <input
+    type="text"
+    pInputText
+    placeholder="Ask me something.."
+    (keyup.enter)="onEnter($event)"
+  />
 </div>

@@ -39,6 +39,7 @@ export interface Meal {
   vegetables?: string;
   dessert?: string;
   nutritionalValues: NutritionalValues;
+  medications: { name: string; hour: string; additionalInfo: string }[];
 }
 
 export interface DailyMeals {

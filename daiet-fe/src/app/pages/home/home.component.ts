@@ -144,8 +144,6 @@ export class HomeComponent {
       this.patologieList = diseases;
     });
     this.typologicalService.getMedications().subscribe((medications) => {
-      console.log(medications);
-
       this.farmaciList = medications;
     });
 

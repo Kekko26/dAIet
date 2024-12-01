@@ -54,6 +54,10 @@
           meal.side ? "🥗 " + meal.side : ""
         }}
         <br />{{ meal.vegetables ? " 🥦 " + meal.vegetables : "" }}
+        @for (med of meal.medications; track med.name) {
+        <br />🩺 {{ med.name }} at {{ med.hour }}
+        {{ med.additionalInfo ? ": " + med.additionalInfo : "" }}
+        }
       </p>
       }
     </p-tabPanel>

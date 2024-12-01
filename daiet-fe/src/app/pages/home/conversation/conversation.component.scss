@@ -1,34 +1,37 @@
 .message-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .user-message {
-    margin-left: 20%;
-    background-color: #f0f7ff;
+  margin-left: 20%;
+  background-color: #f0f7ff;
 }
 
 .bot-message {
-    margin-right: 20%;
-    background-color: #ffffff;
+  margin-right: 20%;
+  background-color: #ffffff;
 }
 
 :host ::ng-deep .p-card {
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2);
 }
 
-.message-item{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.message-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 div.input-bar {
-    margin-top: auto;
-    // margin-bottom: 1rem;
+  margin-top: auto;
+  // margin-bottom: 1rem;
+  width: 100%;
+  input {
     width: 100%;
-    input {
-      width: 100%;
+    &:focus {
+      box-shadow: none;
     }
   }
+}
