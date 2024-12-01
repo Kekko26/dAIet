@@ -3,9 +3,16 @@
     <h1>dAIet</h1>
     <p>Your personal assistant for the nutrition plan that suits you best</p>
   </div>
-  <div classList="{{ isTable ? 'table-visible ' : '' }} chatbot-wrapper">
+  <div classList="{{ dietPlan ? 'table-visible ' : '' }} chatbot-wrapper">
     <form class="chatbot animated" [formGroup]="chatbotForm">
       <div class="scrollable" #scrollContainer>
+        <div class="generation-button">
+          <p-button
+            label="{{ dietPlan ? 'Re-generate' : 'Generate' }} diet plan"
+            [loading]="isLoading"
+            (onClick)="submit()"
+          />
+        </div>
         <div class="input-cards row g-2">
           <div class="card col-6">
             <p>Do you have any allergies?</p>
@@ -71,12 +78,6 @@
           </div>
           <div class="card col-12">
             <p>Do you have any medical conditions?</p>
-            <!-- <input
-              type="text"
-              pInputText
-              formControlName="patologie"
-              placeholder="Enter them here"
-            /> -->
             <p-autoComplete
               formControlName="patologie"
               [suggestions]="filteredPatologie"
@@ -108,18 +109,19 @@
                 cols="20"
                 rows="2"
                 (input)="updateFarmacoDetails($event, farmacoDetail.id)"
+                [disabled]="isLoading"
               ></textarea>
             </div>
             }
           </div>
         </div>
         <div class="generated">
-          <p>
+          <!-- <p>
             {{ testoSimulato.value }}
-          </p>
+          </p> -->
         </div>
       </div>
-      <div class="input-bar">
+      <div classList="input-bar {{ dietPlan ? 'd-block' : 'd-none' }} ">
         <input
           type="text"
           pInputText
@@ -127,10 +129,13 @@
           placeholder="Ask me something.."
           (keyup.enter)="submit()"
         />
+        @if(isLoading){
+        <i class="pi pi-spinner pi-spin"></i>
+        }
       </div>
     </form>
     <div class="diet-table animated">
-      <app-diet-table [nutritionData]="retreivedJson"></app-diet-table>
+      <app-diet-table [nutritionData]="dietPlan"></app-diet-table>
     </div>
   </div>
 </div>

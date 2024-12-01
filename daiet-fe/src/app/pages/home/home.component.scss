@@ -31,7 +31,7 @@
       gap: 1rem;
       .scrollable {
         padding: 0 0.5rem;
-        height: 100%;
+        height: fit-content;
         overflow-y: scroll;
         overflow-x: hidden;
 
@@ -47,6 +47,11 @@
           border-radius: 5px;
         }
 
+        div.generation-button {
+          margin-bottom: 1rem;
+          display: flex;
+          justify-content: center;
+        }
         div.input-cards {
           // gap: 1rem;
           // margin-top: auto;
@@ -164,8 +169,14 @@
         margin-top: auto;
         // margin-bottom: 1rem;
         width: 100%;
+        position: relative;
         input {
           width: 100%;
+        }
+        .pi-spinner {
+          position: absolute;
+          right: 1rem;
+          top: 1rem;
         }
       }
     }

@@ -1,3 +1,4 @@
+@if(nutritionData){
 <div class="diet-table-container">
   <!-- Patient Profile Summary -->
   @if(patientProfile){
@@ -44,9 +45,9 @@
       @for (meal of nutritionData.mealPlan[day.key].meals; track $index) {
       <p
         pTooltip="Calories: {{ meal.nutritionalValues.calories }}
-         Carbs: {{ meal.nutritionalValues.carbohydrates }}
-        Proteines: {{ meal.nutritionalValues.proteins }}
-        Fats: {{ meal.nutritionalValues.fats }}"
+           Carbs: {{ meal.nutritionalValues.carbohydrates }}
+          Proteines: {{ meal.nutritionalValues.proteins }}
+          Fats: {{ meal.nutritionalValues.fats }}"
       >
         <strong class="custom-font-bold">{{ meal.meal }}</strong> at
         {{ meal.hour }}: <br />🍽️ {{ meal.main }} <br />{{
@@ -59,3 +60,5 @@
     }
   </p-tabView>
 </div>
+
+}

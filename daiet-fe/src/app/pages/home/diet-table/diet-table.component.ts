@@ -4,6 +4,12 @@ import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
+import {
+  DietPlan,
+  MealPlan,
+  NutritionalValues,
+  PatientProfile,
+} from 'src/app/shared/model/diet-generator.model';
 
 @Component({
   selector: 'app-diet-table',
@@ -13,13 +19,13 @@ import { TooltipModule } from 'primeng/tooltip';
   styleUrls: ['./diet-table.component.scss'],
 })
 export class DietTableComponent {
-  @Input() nutritionData: any;
+  @Input() nutritionData: DietPlan | null = null;
 
-  patientProfile: any;
-  mealPlan: any;
+  patientProfile: PatientProfile = {} as PatientProfile;
+  mealPlan: MealPlan = {} as MealPlan;
   dailyCaloricNeeds: number = 0;
   caloricIntakePlan: number = 0;
-  macronutrientBalance: any;
+  macronutrientBalance: NutritionalValues = {} as NutritionalValues;
 
   days = [
     { key: 'mon', name: 'Monday' },
@@ -31,14 +37,12 @@ export class DietTableComponent {
     { key: 'sun', name: 'Sunday' },
   ];
 
-  selectedDay: any;
-
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.nutritionData.mealPlan);
-
+  ngOnChanges() {
     if (this.nutritionData) {
+      console.log('arrivato', this.nutritionData);
+
       this.patientProfile = this.nutritionData.patientProfile;
       this.mealPlan = this.nutritionData.mealPlan;
       this.dailyCaloricNeeds = this.nutritionData.dailyCaloricNeeds;

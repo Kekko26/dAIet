@@ -1,3 +1,5 @@
+@import "primeicons/primeicons.css";
+
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
@@ -5,19 +7,20 @@ body {
   --sb-thumb-color: var(--blue-400);
   --sb-size: 5px;
 }
-.custom-font-regular {
-  * {
-    font-family: "Inconsolata", monospace;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-  }
-  .custom-font-bold {
-    font-family: "Inconsolata", monospace;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-  }
+.custom-font-regular,
+span,
+input,
+button {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+.custom-font-bold {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
