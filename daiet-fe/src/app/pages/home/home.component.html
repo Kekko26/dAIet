@@ -9,64 +9,22 @@
         <div class="input-cards row g-2">
           <div class="card col-6">
             <p>Do you have any allergies?</p>
-            <input
-              type="text"
-              pInputText
-              formControlName="allergeni"
-              placeholder="Enter them here"
-            />
+            <input type="text" pInputText formControlName="allergeni" placeholder="Enter them here" />
           </div>
 
           <div class="card col-6 vitalSigns" formGroupName="vitalSigns">
             <p>Vital signs</p>
             <div class="numeric-inputs">
-              <p-inputNumber
-                id="altezza"
-                formControlName="altezza"
-                mode="decimal"
-                minFractionDigits="0"
-                maxFractionDigits="0"
-                min="0"
-                showButtons="true"
-                step="1"
-                suffix="cm"
-              ></p-inputNumber>
-              <p-inputNumber
-                id="peso"
-                formControlName="peso"
-                mode="decimal"
-                minFractionDigits="0"
-                maxFractionDigits="0"
-                min="0"
-                showButtons="true"
-                step="1"
-                suffix="kg"
-              ></p-inputNumber>
-              <p-inputNumber
-                id="eta"
-                formControlName="eta"
-                mode="decimal"
-                minFractionDigits="0"
-                maxFractionDigits="0"
-                min="0"
-                showButtons="true"
-                step="1"
-                placeholder="Age"
-              ></p-inputNumber>
+              <p-inputNumber id="altezza" formControlName="altezza" mode="decimal" minFractionDigits="0"
+                maxFractionDigits="0" min="0" showButtons="true" step="1" suffix="cm"></p-inputNumber>
+              <p-inputNumber id="peso" formControlName="peso" mode="decimal" minFractionDigits="0" maxFractionDigits="0"
+                min="0" showButtons="true" step="1" suffix="kg"></p-inputNumber>
+              <p-inputNumber id="eta" formControlName="eta" mode="decimal" minFractionDigits="0" maxFractionDigits="0"
+                min="0" showButtons="true" step="1" placeholder="Age"></p-inputNumber>
             </div>
             <div class="text-inputs">
-              <p-dropdown
-                formControlName="goal"
-                [options]="goals"
-                optionLabel="label"
-                placeholder="Goal"
-              />
-              <p-selectButton
-                [options]="sesso"
-                formControlName="sesso"
-                optionLabel="label"
-                optionValue="value"
-              />
+              <p-dropdown formControlName="goal" [options]="goals" optionLabel="label" placeholder="Goal" />
+              <p-selectButton [options]="sesso" formControlName="sesso" optionLabel="label" optionValue="value" />
             </div>
           </div>
           <div class="card col-12">
@@ -77,56 +35,30 @@
               formControlName="patologie"
               placeholder="Enter them here"
             /> -->
-            <p-autoComplete
-              formControlName="patologie"
-              [suggestions]="filteredPatologie"
-              (completeMethod)="filterPatologie($event)"
-              optionLabel="name"
-              [multiple]="true"
-              placeholder="Enter them here"
-            />
+            <p-autoComplete formControlName="patologie" [suggestions]="filteredPatologie"
+              (completeMethod)="filterPatologie($event)" optionLabel="name" [multiple]="true"
+              placeholder="Enter them here" />
           </div>
           <div class="card farmaci col-12">
             <p>Are you taking any medications?</p>
-            <p-autoComplete
-              formControlName="farmaci"
-              [suggestions]="filteredFarmaci"
-              (completeMethod)="filterFarmaci($event)"
-              optionLabel="name"
-              [multiple]="true"
-              (onUnselect)="removeFarmaco($event)"
-              placeholder="Enter them here"
-            />
+            <p-autoComplete formControlName="farmaci" [suggestions]="filteredFarmaci"
+              (completeMethod)="filterFarmaci($event)" optionLabel="name" [multiple]="true"
+              (onUnselect)="removeFarmaco($event)" placeholder="Enter them here" />
             @for (farmacoDetail of chatbotForm.get('farmaci')?.value; track
             farmacoDetail.id;){
             <div class="dettagli-farmaci">
               <p>{{ farmacoDetail.name }}</p>
-              <textarea
-                id="{{ farmacoDetail.id }}"
-                placeholder="How do you take {{ farmacoDetail.name }}?"
-                pInputTextarea
-                cols="20"
-                rows="2"
-                (input)="updateFarmacoDetails($event, farmacoDetail.id)"
-              ></textarea>
+              <textarea id="{{ farmacoDetail.id }}" placeholder="How do you take {{ farmacoDetail.name }}?"
+                pInputTextarea cols="20" rows="2" (input)="updateFarmacoDetails($event, farmacoDetail.id)"></textarea>
             </div>
             }
           </div>
         </div>
-        <div class="generated">
-          <p>
-            {{ testoSimulato.value }}
-          </p>
+        @if (isTable) {
+        <div>
+          <app-conversation></app-conversation>
         </div>
-      </div>
-      <div class="input-bar">
-        <input
-          type="text"
-          pInputText
-          formControlName="richiesta"
-          placeholder="Ask me something.."
-          (keyup.enter)="submit()"
-        />
+        }
       </div>
     </form>
     @if(isTable){ }

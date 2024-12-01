@@ -20,6 +20,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DietTableComponent } from './diet-table/diet-table.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { BehaviorSubject, debounceTime } from 'rxjs';
+import { ConversationComponent } from './conversation/conversation.component';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +35,7 @@ import { BehaviorSubject, debounceTime } from 'rxjs';
     SelectButtonModule,
     DietTableComponent,
     DropdownModule,
+    ConversationComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
