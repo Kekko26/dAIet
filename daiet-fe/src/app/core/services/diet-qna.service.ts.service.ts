@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Conversation, Message } from 'src/app/shared/model/conversation.model';
 import { DietPlan } from 'src/app/shared/model/diet-generator.model';
 
@@ -16,15 +16,17 @@ export class DietQnaServiceTsService {
 
   
   askQuestion(diet: DietPlan, history: Conversation, question: string): Observable<Message> {
+    
     const payload = {
       diet_plan: diet,
       history,
       question
     };
 
-    return this.httpClient.post<string>(`${this._baseUrl}/ask`, payload).pipe(
+    return this.httpClient.post<{content: string}>(`${this._baseUrl}/ask`, payload).pipe(
+      tap(res => console.log(res)),
       map(res => ({
-        content: res,
+        content: res.content,
         isUser: false,
         timestamp: new Date()
       }))
