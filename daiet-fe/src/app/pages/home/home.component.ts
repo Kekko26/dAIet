@@ -20,6 +20,11 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DietTableComponent } from './diet-table/diet-table.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { BehaviorSubject, debounceTime } from 'rxjs';
+import { TypologicalService } from 'src/app/core/services/typological.service';
+import {
+  DiseaseDTO,
+  MedicationDTO,
+} from 'src/app/shared/model/typological.model';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +44,10 @@ import { BehaviorSubject, debounceTime } from 'rxjs';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private typologicalService: TypologicalService
+  ) {}
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
 
   goals = [
@@ -71,12 +79,8 @@ export class HomeComponent {
       return;
     }
     try {
-      console.log(this.scrollContainer?.nativeElement.scrollHeight);
-      console.log(this.scrollContainer?.nativeElement.scrollTop);
       this.scrollContainer.nativeElement.scrollTop =
         this.scrollContainer?.nativeElement.scrollHeight;
-      console.log(this.scrollContainer?.nativeElement.scrollHeight);
-      console.log(this.scrollContainer?.nativeElement.scrollTop);
     } catch (err) {
       console.error('Could not scroll to bottom', err);
     }
@@ -96,39 +100,19 @@ export class HomeComponent {
     richiesta: [''],
   });
 
-  patologieList = [
-    { id: 1, name: 'Diabete', code: 'DIA' },
-    { id: 2, name: 'Ipertensione', code: 'IPE' },
-    { id: 3, name: 'Colesterolo', code: 'COL' },
-    { id: 4, name: 'Obesità', code: 'OBE' },
-    { id: 5, name: 'Anemia', code: 'ANE' },
-    { id: 6, name: 'Tiroide', code: 'TIR' },
-    { id: 7, name: 'Depressione', code: 'DEP' },
-  ];
-  filteredPatologie: any[] = [];
+  patologieList: DiseaseDTO[] = [];
+  filteredPatologie: DiseaseDTO[] = [];
 
   filterPatologie(event: AutoCompleteCompleteEvent) {
     this.filteredPatologie = this.patologieList.filter((patologia) => {
-      return patologia.name.toLowerCase().includes(event.query.toLowerCase());
+      return patologia.disease
+        .toLowerCase()
+        .includes(event.query.toLowerCase());
     });
   }
 
-  farmaciList = [
-    { id: 1, name: 'Paracetamolo', code: 'PAR' },
-    { id: 2, name: 'Ibuprofene', code: 'IBU' },
-    { id: 3, name: 'Aspirina', code: 'ASP' },
-    {
-      id: 4,
-      name: 'Amoxicillina',
-      code: 'AMO',
-    },
-    {
-      id: 5,
-      name: 'Azitromicina',
-      code: 'AZI',
-    },
-  ];
-  filteredFarmaci: any[] = [];
+  farmaciList: MedicationDTO[] = [];
+  filteredFarmaci: MedicationDTO[] = [];
   filterFarmaci(event: AutoCompleteCompleteEvent) {
     this.filteredFarmaci = this.farmaciList.filter((farmaco) => {
       return farmaco.name.toLowerCase().includes(event.query.toLowerCase());
@@ -164,6 +148,18 @@ export class HomeComponent {
       setTimeout(() => {
         this.scrollDown();
       }, 300);
+    });
+
+    this.typologicalService
+      .getDiseases()
+
+      .subscribe((diseases) => {
+        this.patologieList = diseases;
+      });
+    this.typologicalService.getMedications().subscribe((medications) => {
+      console.log(medications);
+
+      this.farmaciList = medications;
     });
   }
 

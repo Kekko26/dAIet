@@ -81,7 +81,7 @@
               formControlName="patologie"
               [suggestions]="filteredPatologie"
               (completeMethod)="filterPatologie($event)"
-              optionLabel="name"
+              optionLabel="disease"
               [multiple]="true"
               placeholder="Enter them here"
             />
@@ -129,7 +129,6 @@
         />
       </div>
     </form>
-    @if(isTable){ }
     <div class="diet-table animated">
       <app-diet-table [nutritionData]="retreivedJson"></app-diet-table>
     </div>
